@@ -141,6 +141,59 @@
     <input type="text" id="city-type" placeholder="Enter a city name...">
     <input type="submit" value="Update" id="submit-btn">
   </form>
-  <script src="js/index.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    // Get DOM object city-form ID, which is on the form element
+
+    const bodyElement = document.body;
+
+    // using the 'submit' event of the form seems better than the 'click' event of the button.
+    // With the form as the target of the event I can get the element from the form, as hinted to by the top instruction.
+    // In the wild, it's also possible the form might have multiple submit triggers and the form's submit event will be triggerd by any of them rather than attaching a listener to each of the discrete possibilites 
+
+    document.getElementById("citipix-form").addEventListener('submit', function(e) {
+      e.preventDefault();
+      switch (e.target.elements.namedItem('city-type').value.trim().split(' ').join('').toLowerCase()) {
+        case 'newyork':
+        case 'newyorkcity':
+        case 'bigapple':
+        case 'ny':
+        case 'nyc':
+          bodyElement.className = 'nyc';
+          break;
+        case 'sanfranciso':
+        case 'sf':
+          bodyElement.className = 'sf';
+          break;
+        case 'losangelas':
+        case 'shakytown':
+        case 'la':
+          bodyElement.className = 'la';
+          break;
+        case 'austin':
+        case 'austincity':
+          bodyElement.className = 'austin';
+          break;
+        case 'aussie':
+        case 'sydney':
+          bodyElement.className = 'sydney';
+          break;
+        default: bodyElement.className = '';
+      }
+      e.target.elements.namedItem('city-type').value = null;
+    })
+
+      // True form submissions go to a backend service, but we want to handle things in the front-end. How can we do this?
+
+      // Get the text input fields values with .value on the input - but how exactly?
+
+      // You always want to scan and clean data when you get it from the browser, think about .trim and .toLowerCase - this will make your conditional detection more consistent
+
+
+    // This about conditional logic. We want to check through each possible input a user gives us to make this work properly. Think about conditional statements, going through the list of possible city options.
+
+    // If a user gives us 'Austin' versus 'austin' - how can we make those point to the same background? 
+
+    // We know we want to change the background on the page by switching classes. But how do we replace one class with another using JS???
+  </script>
 </body>
 </html>

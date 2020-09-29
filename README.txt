@@ -1,5 +1,5 @@
 l13-hw06
-* Status: Assigned
+* Status: Final
 * CodePen: <https://codepen.io/chindraba-ga/pen/>
 * Live page: <https://fewd.chindraba.work/lessons/l13-hw06/index.html>
 
